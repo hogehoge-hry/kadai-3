@@ -1,0 +1,56 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+table{
+  //displayのテーブルを使用
+  display: table;
+  //最大幅を常に画面の70%とする
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+thead{
+  //displayのテーブルのヘッダーとして使用
+  display: table-header-group;
+
+}
+tr {
+  //displayのテーブルの行として使用
+  display: table-row;
+  vertical-align: inherit;
+}
+tbody{
+  //displayのテーブルの行として使用
+  display: table-row-group;
+}
+th{
+  //displayのテーブルの要素として使用
+  display: table-cell;
+  //文字を太字に
+  font-weight: bold;
+}
+td{
+  //displayのテーブルの要素として使用
+  display: table-cell;
+  //cellに定まっている余白を削除
+  padding: 0 0;
+
+}
+body{
+  div.field, div.actions{
+    margin-bottom: 10px;
+    padding:0;
+  }
+  .btn {
+    /*ボタンのサイズを変更*/
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+  }
+
+  .field{
+    /*フォームのサイズを*/
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+  }
+}

@@ -1,0 +1,48 @@
+<!-- ユーザー一覧表示-->
+<!-- フラッシュメッセージを表示-->
+<p><%= flash[:notice] %></p>
+
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+    <!-- UserInfo及び新規投稿用部分テンプレート-->
+    <%= render 'books/user_data', book: @book ,user: current_user%>
+
+    <!-- ユーザー一覧表示-->
+    <div class="col-md-8 offset-md-1">
+
+      <h2>Users</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ユーザー一覧表示-->
+          <% @users.each do |user| %>
+            <tr>
+              <!-- ユーザー画像表示-->
+              <div>
+                <%= link_to user_path(user.id) do %>
+                  <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+                <% end %>
+                <!-- ユーザー名 -->
+                <td><%= user.name %></td>
+                <!--ユーザーページへのリンク -->
+                <td><%= link_to 'Show',user_path(user.id) %></td>
+              </div>
+            </tr>
+          <% end %>
+          <%= paginate @users %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

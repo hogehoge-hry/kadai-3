@@ -1,0 +1,40 @@
+<!-- 本の詳細ページ-->
+
+<!-- フラッシュメッセージを表示-->
+<p><%= flash[:notice] %></p>
+
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <!-- 部分テンプレートからUserInfoと新規作成用フォームを設置-->
+    <%= render 'books/user_data', book: @book ,user: @book_show.user%>
+
+    <!-- 本の詳細表示-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <!-- 本に対応するユーザーの画像を表示 -->
+            <td>
+              <%= link_to user_path(@book_show.user.id) do %>
+                <%= attachment_image_tag @book_show.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+              <% end %><br>
+              <!-- 本に対応するユーザー名とユーザーページへのリンク-->
+              <%= link_to @book_show.user.name, user_path(@book_show.user.id)%>
+            </td>
+            <!-- タイトルを表示 -->
+            <td><%= link_to @book_show.title,book_path(@book_show.id) %></td>
+            <!-- テキストを表示 -->
+            <td class="table-text"><%= @book_show.body %></td>
+            <% if @book_show.user.id == current_user.id %>
+              <!-- 編集、削除のためのリンクを作成 -->
+              <td><%= link_to 'Edit',edit_book_path(@book_show),class:'btn btn-success'%></td>
+              <td><%= link_to "Destroy", book_path(@book_show), method: :delete ,class:'btn btn-danger',data: { confirm: "本当に消しますか？" }%></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

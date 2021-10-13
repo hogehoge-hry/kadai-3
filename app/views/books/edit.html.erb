@@ -1,0 +1,48 @@
+<!--本編集ページ-->
+<!-- フラッシュメッセージを表示-->
+<p><%= flash[:notice] %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+      <h1>Editing Book</h1>
+      <!-- エラーメッセージを表示-->
+      <% if @book.errors.any? %>
+       <%= @book.errors.count %> error prohibited this book from being saved:
+       <% @book.errors.full_messages.each do |message| %>
+         <%= message %>
+       <% end %>
+      <% end %>
+
+      <!-- 本の編集用フォーム-->
+      <%= form_with model: @book, local:true do |f| %>
+
+        <!-- タイトル記入用フォーム-->
+        <div class="field">
+         <%= f.label :title %><br>
+         <%= f.text_field :title, autofocus: true, id:"inputTitle",class:'field'%>
+        </div>
+        
+        <!-- 感想入力用フォーム-->
+        <div class="field">
+         <%= f.label :opinion %><br>
+         <%= f.text_area :body, autofocus: true, id:"inputBody",class:'field'%>
+        </div>
+        
+        <!-- 変更完了ボタンを設置-->
+        <div class="actions">
+          <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+        </div>
+        
+      <% end %>
+      <!-- ShowへのリンクとIndexへのリンクを-->
+      <%= link_to "Show",book_path(@book) %> | <a href="/books">Back</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+

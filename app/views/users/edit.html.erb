@@ -1,0 +1,50 @@
+<!-- ユーザー情報変更ページ-->
+<!-- フラッシュメッセージを表示-->
+<p><%= flash[:notice] %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <!-- エラーメッセージを表示-->
+       <% if @user.errors.any? %>
+         <%= @user.errors.count %> error prohibited this book from being saved:
+         <% @user.errors.full_messages.each do |message| %>
+           <%= message %>
+         <% end %>
+       <% end %>
+
+      <!-- 編集用フォーム-->
+      <%= form_with model:@user, local:true do |f| %>
+        <!-- 名前編集用フォーム-->
+        <div class="field">
+          <label for="inputName">Name</label><br>
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" ,class:'field'%>
+        </div>
+
+        <!-- プロフィール画像変更ようフォーム-->
+        <div class="field">
+          <label for="inputImage">Image</label><br>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+        </div>
+
+        <!-- 自己紹介文変更用フォーム-->
+        <div class="field">
+          <label for="inputIntroducton">Introduction</label><br>
+          <%= f.text_area :introduction, autofocus: true, id:"inputIntroducton",class:'field'%>
+        </div>
+
+        <!-- アップデート用ボタン-->
+        <div class="actions">
+          <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

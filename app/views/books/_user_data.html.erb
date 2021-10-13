@@ -1,0 +1,47 @@
+<!-- UserInfoを作成-->
+<div class="col-md-3">
+  <h2>User info</h2>
+  <!-- ユーザの写真を表示-->
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <!-- nameとIntroductionを表示-->
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  <!-- プロフィール編集ページへのリンク-->
+  <div class="row">
+    <%= link_to edit_user_path(user.id),class: 'btn btn-outline-secondary btn-block' do%>
+      <!-- 歯車アイコンを設置-->
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+
+  <!-- 新規作成用フォームを用意-->
+  <h2 class="mt-3">New book</h2>
+  <%= form_with model: @book, local:true do |f| %>
+    <!-- タイトル記入用フォーム-->
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title ,class:'field' %>
+    </div>
+    <!-- 感想文記入用フォーム-->
+    <div class="field">
+      <%= f.label :opinion %><br>
+      <%= f.text_area :body ,class:'field' %>
+    </div>
+    
+    <!-- 投稿用-->
+    <div class="actions">
+      <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+    </div>
+  <% end %>
+</div>

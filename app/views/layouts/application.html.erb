@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <script src="https://kit.fontawesome.com/*******.js" crossorigin="anonymous"></script>
+    <title>Booker2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+
+    <!-- ヘッダーの背景を黒に変更-->
+    <header class="bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <!-- ルートへのリンク“Bookers”を設置-->
+          <a class="navbar-brand text-light" href="/">Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+              <% if user_signed_in? %>
+                <!-- サインインしている場合以下を表示する-->
+                <!-- ユーザーページへのリンクを作成-->
+                <li class="nav-item">
+                  <%= link_to ' Home', user_path(current_user.id) ,class:'home_white nav-link text-light fas fa-home'%>
+                </li>
+                <!-- ユーザー一覧のページへのリンクを作成-->
+                <li class="nav-item">
+                  <%= link_to ' Users', users_path,class:'nav-link text-light fas fa-users'%>
+                </li>
+                <!-- Book一覧を表示するページへのリンク-->
+                <li class="nav-item">
+                  <%= link_to ' Books', books_path ,class:'nav-link text-light fas fa-book-open'%>
+                </li>
+                <!-- ログアウト用リンク-->
+                <li class="nav-item">
+                  <%= link_to " Log out", destroy_user_session_path, method: :delete ,class:'nav-link text-light fas fa-sign-out-alt'%>
+                </li>
+
+              <% else %>
+                <!-- サインインしていない場合以下を表示-->
+                <!-- ルートへのリンク-->
+                <li class="nav-item">
+                  <%= link_to ' Home', root_path ,class:'nav-link text-light fas fa-home'%>
+                </li>
+                <!-- Aboutページへのリンク-->
+                <li class="nav-item">
+                  <%= link_to " About", home_about_path ,class:'nav-link text-light fas fa-link'%>
+                </li>
+                <!-- サインアップ用のページへのリンク-->
+                <li class="nav-item">
+                  <%= link_to " Sign up", new_user_registration_path ,class:'nav-link text-light fas fa-user-plus'%>
+                </li>
+                <!-- ログインページへのリンク-->
+                <li class="nav-item">
+                  <%= link_to " Log in", new_user_session_path ,class:'nav-link text-light fas fa-sign-in-alt'%>
+                </li>
+              <% end %>
+             </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    <main class="mb-auto">
+
+    <%= yield %>
+    </main>
+    <!-- フッターを表示-->
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
