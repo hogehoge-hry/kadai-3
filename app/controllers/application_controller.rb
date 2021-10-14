@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-
-　#ログインしていない限り、TopとAbout以外の閲覧を不許可
+  #ログインしていない限り、TopとAbout以外の閲覧を不許可
   before_action :authenticate_user!,except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
