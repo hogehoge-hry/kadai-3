@@ -41,6 +41,8 @@
             <td><%= link_to book.title,book_path(book.id) %></td>
             <!-- 本のテキスト -->
             <td class="table-text"><%= book.body %></td>
+            <td><%= render 'books/favorites', book: book %></td>
+            <td><p><%= "#{book.book_comments.count} コメント" %></p></td>
           </tr>
           <% end %>
         </tbody>

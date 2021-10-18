@@ -27,6 +27,7 @@ class BooksController < ApplicationController
     @book = Book.new
     #book_showへ表示したい本idのbookを格納
     @book_show = Book.find(params[:id])
+    @book_comment = BookComment.new
   end
 
   #編集するBookを表示する為に対応するidのbookを格納
